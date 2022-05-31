@@ -6,6 +6,8 @@ import dio.designpatternspringboot.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
@@ -22,7 +24,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente buscarPorId(Long id) {
-        return null;
+        Optional<Cliente> cliente = clienteRepository.findById(id);
+        return cliente.get();
     }
 
     @Override
