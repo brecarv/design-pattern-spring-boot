@@ -1,19 +1,23 @@
 package dio.designpatternspringboot.service.impl;
 
 import dio.designpatternspringboot.model.Cliente;
+import dio.designpatternspringboot.model.ClienteRepository;
 import dio.designpatternspringboot.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
     // TODO Singleton: Injetar os componentes do Spring com @Autowired.
+    @Autowired
+    private ClienteRepository clienteRepository;
     // TODO Strategy: Implementar os métodos definidos na interface.
     // TODO Facade: Abstrair integrações com subsistemas, provendo uma interfae simples.
 
     @Override
     public Iterable<Cliente> buscarTodos() {
-        return null;
+        return clienteRepository.findAll();
     }
 
     @Override
