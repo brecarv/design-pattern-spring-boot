@@ -38,6 +38,23 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void inserir(Cliente cliente) {
+        salvarClienteComCep(cliente);
+    }
+
+    @Override
+    public void atualizar(Long id, Cliente cliente) {
+        Optional<Cliente> clienteBd = clienteRepository.findById(id);
+        if(clienteBd.isPresent()){
+            salvarClienteComCep(cliente);
+        }
+    }
+
+    @Override
+    public void deletar(Long id) {
+
+    }
+
+    private void salvarClienteComCep(Cliente cliente) {
         // Verifica se o endereço do cliente já existe.
         String cep = cliente.getEndereco().getCep();
         Endereco endereco = enderecoRepository.findById(cep).orElseGet(() -> {
@@ -49,15 +66,5 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setEndereco(endereco);
         // Inserir o Cliente com endereço (novo ou existente).
         clienteRepository.save(cliente);
-    }
-
-    @Override
-    public void atualizar(Long id, Cliente cliente) {
-
-    }
-
-    @Override
-    public void deletar(Long id) {
-
     }
 }
