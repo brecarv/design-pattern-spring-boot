@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
-    // TODO Singleton: Injetar os componentes do Spring com @Autowired.
+    //  Singleton: Injetar os componentes do Spring com @Autowired.
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
@@ -22,8 +22,8 @@ public class ClienteServiceImpl implements ClienteService {
     @Autowired
     private ViaCepService viaCepService;
 
-    // TODO Strategy: Implementar os métodos definidos na interface.
-    // TODO Facade: Abstrair integrações com subsistemas, provendo uma interfae simples.
+    //  Strategy: Implementar os métodos definidos na interface.
+    //  Facade: Abstrair integrações com subsistemas, provendo uma interfae simples.
 
     @Override
     public Iterable<Cliente> buscarTodos() {
@@ -51,7 +51,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void deletar(Long id) {
-
+        clienteRepository.deleteById(id);
     }
 
     private void salvarClienteComCep(Cliente cliente) {
